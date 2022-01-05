@@ -1,7 +1,6 @@
 #ifndef _ENGINE_H
 #define _ENGINE_H
 
-#include <vector>
 #include <random>
 
 #include "grid.h"
@@ -14,7 +13,6 @@ class Engine {
         void run();
 
     private:
-        Grid m_grid;
         Entity m_player;
         std::vector<Entity> m_enemies;
 };

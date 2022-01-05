@@ -1,6 +1,8 @@
 #ifndef _TOOLS_H
 #define _TOOLS_H
 
+#include <iostream>
+
 #include "raylib.h"
 
 #include <math.h>
@@ -31,6 +33,8 @@ struct Size {
 
 namespace Tools {
     float dst(Vector2 vec1, Vector2 vec2);
+    bool clicked_in(Vector2 mouse_pos, Shape shape, uint size, Vector2 coord);
+    bool point_in_rectangle(Vector2 ori, Vector2 size, Vector2 pos);
 }
 
 #endif
