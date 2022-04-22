@@ -10,11 +10,11 @@ Entity::Entity(float speed, uint size, Shape shape): speed(speed), size(size), s
     coordinates.y = 10;
 }
 
-bool Entity::move(Vector2 target) {
-    if (Tools::dst(coordinates, target) < speed)
+bool Entity::move(Vector2 target_entity) {
+    if (Tools::dst(coordinates, target_entity) < speed)
         return false;
 
-    float a = atan2(target.y - coordinates.y, target.x - coordinates.x);
+    float a = atan2(target_entity.y - coordinates.y, target_entity.x - coordinates.x);
 
     coordinates.x = coordinates.x + speed * cos(a);
     coordinates.y = coordinates.y + speed * sin(a);
