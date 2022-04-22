@@ -37,7 +37,6 @@ void Engine::run() {
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && (GetGestureDetected() == GESTURE_DRAG || GetGestureDetected() == GESTURE_HOLD)) {
             if (!is_dragging) {
                 origin_of_drag = GetMousePosition();
-                std::cout << "origin_of_drag = " << origin_of_drag.x << "/" << origin_of_drag.y << std::endl;
                 is_dragging = true;
             }
         }
@@ -45,11 +44,16 @@ void Engine::run() {
         if (is_dragging && (GetGestureDetected() == GESTURE_DRAG || GetGestureDetected() == GESTURE_HOLD)) {
             size_of_drag.x = screen_width * GetGestureDragVector().x;
             size_of_drag.y = screen_height * GetGestureDragVector().y;
+
+            Vector4 true_size = Tools::get_true_rectangle_coordinates(origin_of_drag.x,
+                                                                      origin_of_drag.y,
+                                                                      size_of_drag.x,
+                                                                      size_of_drag.y);
             
-            DrawRectangleLines((int)origin_of_drag.x,
-                               (int)origin_of_drag.y,
-                               (int)size_of_drag.x,
-                               (int)size_of_drag.y,
+            DrawRectangleLines((int)true_size.x,
+                               (int)true_size.y,
+                               (int)true_size.w,
+                               (int)true_size.z, // h
                                RED);
         }
 
