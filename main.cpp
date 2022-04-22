@@ -1,8 +1,8 @@
-#include "raylib.h"
 #include "include/engine.h"
 
-int main(void) {
+int main() {
     Engine engine;
+    engine.init();
     engine.run();
 
     return 0;

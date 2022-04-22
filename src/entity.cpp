@@ -1,13 +1,21 @@
 #include "../include/entity.h"
 
 Entity::Entity() {
-    coordinates.x = 10;
-    coordinates.y = 10;
+    coordinates = {10, 10};
+    target = {0, 0};
+    speed = 0.0;
+    shape = Shape::CIRCLE;
+    size = 1.0;
 }
 
 Entity::Entity(float speed, uint size, Shape shape): speed(speed), size(size), shape(shape) {
-    coordinates.x = 10;
-    coordinates.y = 10;
+    coordinates = {10, 10};
+    target = {0, 0};
+}
+
+Entity::Entity(float x, float y, float speed, uint size, Shape shape): speed(speed), size(size), shape(shape) {
+    coordinates = {x, y};
+    target = {0, 0};
 }
 
 bool Entity::move(Vector2 target_entity) {

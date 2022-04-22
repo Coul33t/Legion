@@ -2,7 +2,7 @@
 
 Engine::Engine() {
     for (uint i = 0; i < 5; i++) {
-        m_enemies.push_back(Entity(1, 10, Shape::ELLIPSE));
+        m_enemies.emplace_back(Entity(1, i * 10, 1, 10, Shape::ELLIPSE));
     }
 }
 
@@ -31,8 +31,8 @@ void Engine::run() {
 
     while (!WindowShouldClose()) {
 
-        for (auto it = m_enemies.begin(); it != m_enemies.end(); it++)
-            (*it).move(m_player.coordinates);
+        for (Entity& ent: m_enemies)
+            ent.move(m_player.coordinates);
 
         if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && (GetGestureDetected() == GESTURE_DRAG || GetGestureDetected() == GESTURE_HOLD)) {
             if (!is_dragging) {
@@ -89,12 +89,12 @@ void Engine::run() {
         DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
 
         if (m_player.selected)
-            DrawCircle(m_player.coordinates.x, m_player.coordinates.y, m_player.size, BLUE);
+            DrawCircle(m_player.coordinates.x, m_player.coordinates.y, m_player.size, GREEN);
         else
             DrawCircle(m_player.coordinates.x, m_player.coordinates.y, m_player.size, RED);
 
-        for (auto it = m_enemies.begin(); it != m_enemies.end(); it++)
-            DrawEllipse((*it).coordinates.x, (*it).coordinates.y, 5, 10, BLUE);
+        for (Entity& ent: m_enemies)
+            DrawCircle(ent.coordinates.x, ent.coordinates.y, 2, BLUE);
 
         EndDrawing();
     }
