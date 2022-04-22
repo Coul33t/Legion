@@ -32,9 +32,10 @@ struct Size {
 };
 
 namespace Tools {
-    float dst(Vector2 vec1, Vector2 vec2);
+    double dst(Vector2 vec1, Vector2 vec2);
     bool clicked_in(Vector2 mouse_pos, Shape shape, uint size, Vector2 coord);
     bool point_in_rectangle(Vector2 ori, Vector2 size, Vector2 pos);
+    Vector4 get_true_rectangle_coordinates(int origin_x, int origin_y, int size_x, int size_y);
 }
 
 #endif
